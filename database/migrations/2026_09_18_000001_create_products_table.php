@@ -1,0 +1,3 @@
+<?php
+use Illuminate\Database\Migrations\Migration; use Illuminate\Database\Schema\Blueprint; use Illuminate\Support\Facades\Schema;
+return new class extends Migration { public function up(): void { Schema::create('products',function(Blueprint $t){$t->id();$t->string('name');$t->string('sku')->unique();$t->decimal('base_cost',12,2);$t->decimal('procurement_cost',12,2)->default(0);$t->decimal('delivery_cost',12,2)->default(0);$t->decimal('packaging_cost',12,2)->default(0);$t->decimal('demand_multiplier',6,4)->default(1);$t->decimal('season_multiplier',6,4)->default(1);$t->decimal('operational_margin_percent',6,2)->default(15);$t->string('currency',3)->default('BDT');$t->timestamps();}); } public function down(): void { Schema::dropIfExists('products'); } };
